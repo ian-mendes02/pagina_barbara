@@ -1,0 +1,471 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bree+Serif&family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap");
+body, html {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to right, #0986bf, #3fbac5, #00ffa2);
+  background-repeat: no-repeat;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes floatY {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: translateY(-200vh);
+  }
+}
+@keyframes floatX {
+  0% {
+    transform: translateX(5vw);
+  }
+  50% {
+    transform: translateX(-5vw);
+  }
+  100% {
+    transform: translateX(5vw);
+  }
+}
+@keyframes floatNegX {
+  0% {
+    transform: translateX(-5vw);
+  }
+  50% {
+    transform: translateX(5vw);
+  }
+  100% {
+    transform: translateX(-5vw);
+  }
+}
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(110%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(100%);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(100%);
+  }
+  50% {
+    transform: scale(102%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@keyframes vanish {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+@keyframes fadein {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes blinkOpacity {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.floatY {
+  animation: floatY 2s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.reveal {
+  animation: reveal 2s forwards cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.vanish {
+  animation: vanish 2s forwards cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.fadein {
+  animation: fadein 2s forwards cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.blink {
+  animation: blinkOpacity 2s infinite ease-in-out;
+}
+
+#initial_prompt {
+  font-family: "Bebas Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 2vw;
+  background-color: #ff6347;
+  color: white;
+  transition: 0.3s ease-in;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+#initial_prompt h1 {
+  font-size: 3vw;
+  margin: 0;
+}
+#initial_prompt h2 {
+  font-size: 1.5vw;
+  font-weight: 400;
+  margin: 1.5vw 0;
+}
+#initial_prompt img {
+  width: 10vw;
+  margin: 2vw;
+}
+#initial_prompt button {
+  border: solid 2px white;
+  border-radius: 15vw;
+  background-color: transparent;
+  margin: 0 auto;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5vw;
+  color: #fff;
+  padding: 1vw;
+  width: 30%;
+  cursor: pointer;
+}
+#initial_prompt button:hover {
+  backdrop-filter: brightness(125%);
+}
+
+#balloons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: block;
+  margin: auto;
+  height: 0;
+}
+#balloons img {
+  margin: 1vw;
+  opacity: 0.8;
+}
+#balloons .container {
+  display: flex;
+  position: fixed;
+  left: 25%;
+  bottom: -100vh;
+  z-index: 10;
+}
+#balloons .container:nth-of-type(even) {
+  animation: floatX 2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+#balloons .container:nth-of-type(odd) {
+  animation: floatNegX 2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.page-content {
+  font-family: "DM Sans", sans-serif;
+  width: 100vw;
+  margin: 0 auto;
+  background-image: linear-gradient(to top right, #d48aef, #80e9f6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  padding: 2vw 10vw;
+  overflow-y: hidden;
+}
+.page-content h1 {
+  font-size: 5vw;
+  font-weight: 700;
+  background: linear-gradient(to right, #8714b0, #1885d3);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: "Bree Serif", sans-serif;
+  display: block;
+  margin-top: 25vw;
+}
+.page-content h2 {
+  font-size: 10vw;
+  font-weight: 400;
+  margin: 10vw 0;
+}
+
+#timespan {
+  font-family: "Bree Serif", sans-serif;
+  position: relative;
+  padding-bottom: 5vw;
+}
+#timespan h1 {
+  font-size: 2vw;
+  font-weight: 800;
+  margin: 2vw 0;
+  opacity: 0;
+  transform: translate(0);
+}
+#timespan h1:last-of-type {
+  transform: translate(0);
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  font-size: 1.25vw;
+}
+#timespan span {
+  font-size: 1.8vw;
+  margin: 1.5vw 0;
+  font-weight: 700;
+  background: linear-gradient(to right, #8714b0, #1885d3);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  color: transparent;
+  opacity: 0;
+  display: block;
+  font-family: "DM Sans", sans-serif;
+}
+
+#message {
+  display: none;
+  overflow-y: scroll;
+  width: 50%;
+}
+#message::-webkit-scrollbar {
+  display: none;
+}
+#message h1 {
+  margin: 2vw 0;
+  text-align: left;
+  font-size: 2vw;
+}
+#message p {
+  font-size: 1vw;
+  text-align: left;
+  color: #0b283c;
+}
+#message p span {
+  text-align: center;
+  display: block;
+  margin: 2vw auto;
+  font-family: "Bree Serif", sans-serif;
+  background: linear-gradient(to right, #8714b0, #1885d3);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+#message img {
+  width: 15vw;
+  display: block;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  #initial_prompt {
+    font-family: "Bebas Neue", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 2vw 10vw;
+    background-color: #ff6347;
+    color: white;
+    transition: 0.3s ease-in;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+  #initial_prompt h1 {
+    font-size: 20vw;
+    margin: 0;
+  }
+  #initial_prompt h2 {
+    font-size: 10vw;
+    font-weight: 400;
+    margin: 10vw 0;
+  }
+  #initial_prompt img {
+    width: 30vw;
+    margin: 5vw;
+  }
+  #initial_prompt button {
+    border: solid 5px white;
+    border-radius: 15vw;
+    background-color: transparent;
+    margin: 0 auto;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10vw;
+    color: #fff;
+    padding: 2vw;
+    width: 100%;
+    cursor: pointer;
+  }
+  #initial_prompt button:hover {
+    backdrop-filter: brightness(125%);
+  }
+  #balloons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    display: block;
+    margin: auto;
+    height: 0;
+  }
+  #balloons img {
+    margin: 1vw;
+    opacity: 0.8;
+  }
+  #balloons .container {
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: -60vh;
+    z-index: 10;
+  }
+  #balloons .container:nth-of-type(even) {
+    animation: floatX 2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+  #balloons .container:nth-of-type(odd) {
+    animation: floatNegX 2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+  .page-content {
+    font-family: "DM Sans", sans-serif;
+    width: 100vw;
+    margin: 0 auto;
+    background-image: linear-gradient(to top right, #d48aef, #80e9f6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 5vw;
+    overflow-y: hidden;
+  }
+  .page-content h1 {
+    font-size: 10vw;
+    font-weight: 700;
+    background: linear-gradient(to right, #8714b0, #1885d3);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-top: 75vh;
+    font-family: "Bree Serif", sans-serif;
+  }
+  .page-content h2 {
+    font-size: 10vw;
+    font-weight: 400;
+    margin: 10vw 0;
+  }
+  #timespan {
+    font-family: "Bree Serif", sans-serif;
+    position: relative;
+    padding-bottom: 20vw;
+  }
+  #timespan h1 {
+    font-size: 7.5vw;
+    font-weight: 800;
+    margin: 5vw 0;
+    opacity: 0;
+    transform: translate(0);
+  }
+  #timespan h1:last-of-type {
+    transform: translate(0);
+    font-size: 4vw;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+  }
+  #timespan span {
+    font-size: 7.5vw;
+    margin: 5vw 0;
+    font-weight: 700;
+    background: linear-gradient(to right, #8714b0, #1885d3);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    color: transparent;
+    opacity: 0;
+    display: block;
+    font-family: "DM Sans", sans-serif;
+  }
+  #message {
+    display: none;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  #message h1 {
+    font-size: 10vw;
+    margin: 5vw 0;
+    text-align: left;
+  }
+  #message p {
+    font-size: 5vw;
+    text-align: left;
+    color: #0b283c;
+  }
+  #message p span {
+    text-align: center;
+    display: block;
+    margin: 10vw auto;
+    font-family: "Bree Serif", sans-serif;
+    background: linear-gradient(to right, #8714b0, #1885d3);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  #message img {
+    width: 75vw;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
